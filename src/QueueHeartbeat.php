@@ -16,13 +16,16 @@ class QueueHeartbeat extends Plugin
     {
         parent::init();
 
+        if (!Craft::$app->getRequest()->getIsConsoleRequest()) {
+            $this->controllerNamespace =
+                "korcontrol\\queueheartbeat\\controllers";
+        }
+
+        $config = self::getConfig();
+
         Event::on(Queue::class, Queue::EVENT_WORKER_LOOP, function (
             WorkerEvent $event,
-        ) {
-            $config = Craft::$app
-                ->getConfig()
-                ->getConfigFromFile("queueheartbeat");
-
+        ) use ($config) {
             if (
                 !(array_key_exists("interval", $config) && $config["interval"])
             ) {
@@ -58,5 +61,10 @@ class QueueHeartbeat extends Plugin
                 $config["interval"],
             );
         });
+    }
+
+    public static function getConfig()
+    {
+        return Craft::$app->getConfig()->getConfigFromFile("queueheartbeat");
     }
 }
