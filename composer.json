@@ -1,0 +1,38 @@
+{
+  "name": "korcontrol/craft-queue-heartbeat",
+  "description": "",
+  "type": "craft-plugin",
+  "keywords": [],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Kor Control",
+      "homepage": "https://korcontrol.com"
+    }
+  ],
+  "support": {
+    "email": "support@korcontrol.com",
+    "issues": "https://github.com/korcontrol/craft-queue-heartbeat/issues?state=open",
+    "source": "https://github.com/korcontrol/craft-queue-heartbeat",
+    "docs": "https://github.com/korcontrol/craft-queue-heartbeat/blob/main/README.md"
+  },
+  "require": {
+    "craftcms/cms": "^4.0.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "korcontrol\\queueheartbeat\\": "src/"
+    }
+  },
+  "extra": {
+    "name": "Queue Heartbeat",
+    "handle": "queue-heartbeat",
+    "class": "korcontrol\\queueheartbeat\\QueueHeartbeat"
+  },
+  "config": {
+    "allow-plugins": {
+      "yiisoft/yii2-composer": true,
+      "craftcms/plugin-installer": true
+    }
+  }
+}
