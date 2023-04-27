@@ -3,8 +3,8 @@
 namespace korcontrol\queueheartbeat\controllers;
 
 use Craft;
+use craft\web\Controller;
 use korcontrol\queueheartbeat\QueueHeartbeat;
-use yii\base\Controller;
 use yii\web\ForbiddenHttpException;
 
 class MonitorController extends Controller
@@ -19,12 +19,12 @@ class MonitorController extends Controller
             throw new ForbiddenHttpException();
         }
 
-        return [
+        return $this->asJson([
             "delayed" => Craft::$app->getQueue()->totalDelayed,
             "failed" => Craft::$app->getQueue()->totalFailed,
             "reserved" => Craft::$app->getQueue()->totalReserved,
             "waiting" => Craft::$app->getQueue()->totalWaiting,
             "total" => Craft::$app->getQueue()->totalJobs,
-        ];
+        ]);
     }
 }
