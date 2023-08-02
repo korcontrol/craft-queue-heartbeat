@@ -9,6 +9,11 @@ use yii\web\ForbiddenHttpException;
 
 class MonitorController extends Controller
 {
+    /**
+     * @inheritdoc
+     */
+    protected array|bool|int $allowAnonymous = self::ALLOW_ANONYMOUS_LIVE;
+
     public function actionIndex()
     {
         if (
